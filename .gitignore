@@ -1,2 +1,4 @@
 /hack
 .env
+/__pycache__
+/transcripts
