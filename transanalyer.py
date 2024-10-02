@@ -15,14 +15,14 @@ load_dotenv()
 
 class ReviewClassification(BaseModel):
     """Pydantic model to get the sentiment of the excerpt"""
-    sentiment: str = Field(description='The sentiment of the text', enum=["positive", "negative", "neutral"])
+    sentiment: str = Field(description='The sentiment of the text', enum=["excited","good", "neutral","need intensity", "not good"])
             
 @dataclass
 class Transanalyer:
     url: str = ""
     transcript: str = ""
     chunks: List[str] = dataclasses.field(default_factory=list)
-    res: Dict[str, int] = dataclasses.field(default_factory=lambda: {"positive": 0, "negative": 0, "neutral": 0})
+    res: Dict[str, int] = dataclasses.field(default_factory=lambda: {"excited":0,"good":0, "neutral":0,"need intensity":0, "not good":0})
     model = ChatGoogleGenerativeAI(model="gemini-1.5-flash")
     
     def __repr__(self):
@@ -72,7 +72,7 @@ class Transanalyer:
         """
         prompt_template ='You are a highly accurate sentiment analysis system. Analyze the \
             sentiment of the following excerpt and provide a clear assessment of whether the \
-            sentiment is positive, negative, or neutral in one word. MUST choose one sentiment \
+            sentiment is "excited","good", "neutral","need intensity", "not good" in one word. MUST choose one sentiment \
             No option for None {chunk}'
         
         prompt = ChatPromptTemplate.from_template(prompt_template)

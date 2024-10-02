@@ -21,7 +21,7 @@ if st.button("Evaluate"):
         categories = list(sentiment_results.keys())
         values = list(sentiment_results.values())
         
-        ax.bar(categories, values, color=['green', 'red', 'gray'])
+        ax.bar(categories, values, color=['green','blue', 'gray','orange','red'])
         ax.set_title("Sentiment Analysis Results")
         ax.set_xlabel("Sentiment")
         ax.set_ylabel("Frequency")
